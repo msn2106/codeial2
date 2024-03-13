@@ -6,5 +6,14 @@ const updateBlogController = (req, res) => {
   return res.end('<h1>This is update blog !!</h1>');
 }
 
-module.exports = createBlogController;
-module.exports = updateBlogController;
+const getBlogController = (req, res) => {
+  return res.render('blogsHome', {
+    title: 'Blogs Home Page'
+  })
+}
+
+module.exports = {
+  createBlogController,
+  updateBlogController,
+  getBlogController
+}

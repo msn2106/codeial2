@@ -3,7 +3,8 @@ const express = require('express');
 const router = express.Router();
 const controllers = require('../controllers');
 
-router.get('/create', controllers.createBlogController);
-router.get('/update', controllers.updateBlogController);
+router.get('/', controllers.getBlogController);
+router.put('/create', controllers.createBlogController);
+router.post('/update', controllers.updateBlogController);
 
 module.exports = router;

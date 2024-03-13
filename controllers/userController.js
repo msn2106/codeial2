@@ -1,6 +1,18 @@
 
-module.exports = (req, res) => {
-  return res.end('<h1>User Profile</h1>');
+const userController = (req, res) => {
+  return res.render('users', {
+    title: 'Users Home Page'
+  })
 }
 
-// module.exports = profile;
+const userProfileController = (req, res) => {
+  return res.render('userProfile', {
+    title: 'User Profile Page'
+  })
+}
+
+
+module.exports = {
+  userController,
+  userProfileController
+}

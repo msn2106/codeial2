@@ -1,11 +1,12 @@
 const homeController = require('./homeController');
-const userController = require('./userController');
-const createBlogController = require('./blogsController');
-const updateBlogController = require('./blogsController');
+const {userController, userProfileController} = require('./userController');
+const {createBlogController, updateBlogController, getBlogController} = require('./blogsController');
 
 module.exports = {
   homeController,
   userController,
+  userProfileController,
   createBlogController,
-  updateBlogController
+  updateBlogController,
+  getBlogController
 }
