@@ -6,10 +6,21 @@ const userController = (req, res) => {
   })
 }
 
-const userProfileController = (req, res) => {
-  return res.render('userProfile', {
-    title: 'User Profile Page'
-  })
+const userProfileController = async (req, res) => {
+  const userCookie = req.cookies.user_id;
+  let user = {};
+  if (userCookie) {
+    user = await User.findById(userCookie)
+  } else return res.redirect('/users/sign-in');
+  if (user) {
+    return res.render('userProfile', {
+      title: 'User Profile Page',
+      user: user
+    })
+  } else {
+    return res.redirect('/users/sign-in');
+  }
+  
 }
 
 // render the sign up page
@@ -40,9 +51,30 @@ const createUser = async (req, res) => {
 }
 
 // sign in and create session
-const createSession = (req, res) => {
-  // TODO: later
+const createSession = async(req, res) => {
+  // find the user
+  const user = await User.findOne({ email: req.body.email });
+  // handle user found
+  if (user) {
+    // handle password which didn't match
+    if (user.password != req.body.password) {
+      return res.redirect('back');
+    }
+    // handle session creation
+    res.cookie('user_id', user.id);
+    return res.redirect('/users/profile');
+  } else {
+    // handle user not found
+    return res.redirect('back');
+  }
 }
+
+const destroySession = (req, res) => {
+  if (req.cookies.user_id) {
+    res.cookie('user_id', '');
+  }
+  return res.redirect('/users/sign-in');
+};
 
 
 module.exports = {
@@ -51,5 +83,6 @@ module.exports = {
   userSignUp,
   userSignIn,
   createUser,
-  createSession
+  createSession,
+  destroySession
 }

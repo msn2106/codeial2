@@ -1,5 +1,5 @@
 const homeController = require('./homeController');
-const {userController, userProfileController, userSignUp, userSignIn, createUser, createSession} = require('./userController');
+const {userController, userProfileController, userSignUp, userSignIn, createUser, createSession, destroySession} = require('./userController');
 const {createBlogController, updateBlogController, getBlogController} = require('./blogsController');
 
 module.exports = {
@@ -10,6 +10,7 @@ module.exports = {
   userSignIn,
   createUser,
   createSession,
+  destroySession,
   createBlogController,
   updateBlogController,
   getBlogController
