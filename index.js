@@ -17,6 +17,7 @@ app.set('layout extractScripts', true);
 // use express router
 app.use('/', require('./routes'));
 
+app.use(express.urlencoded()); // for forms input
 // setting up view engine
 app.set('view engine', 'ejs');
 app.set('views', './views');
