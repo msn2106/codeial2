@@ -7,7 +7,8 @@ const db = mongoose.connection;
 db.on('error', (err) => { console.error.bind(`Error  connecting to the database: ${err}`); });
 
 db.once('open', () => {
-  console.log(`connection to the database is opened`);
+    console.log(`Connected to Database :: MongoDB`);
 });
+
 
 module.exports = db;
